@@ -19,5 +19,6 @@ namespace POSTerminalGui
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainWindow());
         }
+        //this is a test
     }
 }
