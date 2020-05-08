@@ -4,23 +4,31 @@ using System.Text;
 
 namespace POSTerminalGui
 {
-    class CheckPaymentMethod
+    class CheckPaymentMethod: PaymentMethod
     {
-        public bool TakePayment(double amountDue, out double amountStillDue)
+        public int CheckNumber { set; get; }
+        public override string ToString()
+        {
+            return "Check " + CheckNumber + ", amount Paid $" + amountPaid;
+        }
+
+        public override void TakePayment(double amountDue, out double amountStillDue)
         {
             //For check, get the check number.
 
             Console.WriteLine("Please entered the check number: ");
-            int checkNumber = 0;
-            while (int.TryParse(Console.ReadLine(), out checkNumber) ||
-                 checkNumber <= 0)
+            int checkNum = 0;
+            while (!int.TryParse(Console.ReadLine(), out checkNum) ||
+                 checkNum <= 0)
             {
                 Console.WriteLine("I'm sorry I didn't understand.  Please try again.");
             }
 
+            CheckNumber = checkNum;
+
             Console.WriteLine("Please entered the amount tendered: ");
             double amountTendered = 0;
-            while (double.TryParse(Console.ReadLine(), out amountTendered) ||
+            while (!double.TryParse(Console.ReadLine(), out amountTendered) ||
                  amountTendered <= 0)
             {
                 Console.WriteLine("I'm sorry I didn't understand.  Please try again.");
@@ -32,15 +40,17 @@ namespace POSTerminalGui
             {
                 Console.WriteLine("Check cannot be for more than the amount due");
                 amountStillDue = amountDue;
-                return false;
+                paymentAccepted = false;
             }
             else if (amountStillDue == 0) {
-                return true;
+                amountPaid = amountTendered;
+                paymentAccepted = true;
             }
             else // amountStillDue > 0
-            {                
-                Console.WriteLine("Amount still due:" + amountStillDue);
-                return false;
+            {
+                amountPaid = amountTendered;
+                // Console.WriteLine("Amount still due:" + amountStillDue);
+                paymentAccepted = true;
             }
 
         }

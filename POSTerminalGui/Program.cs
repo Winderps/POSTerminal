@@ -9,7 +9,8 @@ namespace POSTerminalGui
     {
         static void Main()
         {
-            Console.WriteLine("Coding is fun!");
+            //Console.WriteLine("Coding is fun!");
+            PaymentMethod.RequestPayment(120);
         }
     }
 }

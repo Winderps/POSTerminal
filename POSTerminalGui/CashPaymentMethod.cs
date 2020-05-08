@@ -4,9 +4,15 @@ using System.Text;
 
 namespace POSTerminalGui
 {
-    class CashPaymentMethod
+    class CashPaymentMethod : PaymentMethod
     {
-        public bool TakePayment(double amountDue, out double amountStillDue)
+        public int CheckNumber { set; get; }
+        public override string ToString()
+        {
+            return "Cash $" + amountPaid;
+        }
+
+        public override void TakePayment(double amountDue, out double amountStillDue)
         {
            //For cash, ask the amount tendered and provide change.
            //For check, get the check number.
@@ -23,14 +29,16 @@ namespace POSTerminalGui
            if (amountTendered >= amountDue)
             {
                 double change = amountTendered - amountDue;
-                Console.WriteLine("Here is your change:" + change);
+                amountPaid = amountDue;
+                Console.WriteLine("Here is your change: $" + change);
                 amountStillDue = 0;
-                return true;
+                paymentAccepted = true;
             } else
             {
+                amountPaid = amountTendered;
                 amountStillDue = amountDue - amountTendered;
-                Console.WriteLine("Amount still due:" + amountStillDue);
-                return false;
+                // Console.WriteLine("Amount still due:" + amountStillDue);
+                paymentAccepted = true;
             }
         }
     }
