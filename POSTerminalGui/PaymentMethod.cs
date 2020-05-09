@@ -54,11 +54,11 @@ namespace POSTerminalGui
                 }
             }// end while
 
-            Console.WriteLine("Thank you for your payment.  Have a nice day!");
-            foreach (PaymentMethod p in payments)
-            {
-                Console.WriteLine("Payment: " + p.ToString() );
-            }
+            //Console.WriteLine("Thank you for your payment.  Have a nice day!");
+            //foreach (PaymentMethod p in payments)
+            //{
+            //    Console.WriteLine("Payment: " + p.ToString() );
+            //}
             return payments;
 
         }
