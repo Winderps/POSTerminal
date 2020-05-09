@@ -29,8 +29,9 @@ namespace POSTerminalGui
            if (amountTendered >= amountDue)
             {
                 double change = amountTendered - amountDue;
-                amountPaid = amountDue;
-                Console.WriteLine("Here is your change: $" + change);
+                //amountPaid = amountDue;
+                amountPaid = amountTendered;
+                //Console.WriteLine("Here is your change: $" + change);
                 amountStillDue = 0;
                 paymentAccepted = true;
             } else
