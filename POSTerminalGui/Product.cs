@@ -29,18 +29,10 @@ namespace POSTerminalGui
 
         public static List<Product> GetProducts()
         {
-            List<Product> products = new List<Product>()
-            {
-                new Product("Hotdog", "Meat log on a bun", 1.50, Category.Food,false),
-                new Product("Big Gulp", "XL Frozen Goodness", 1.99, Category.Drink,false),
-                new Product("Hula Girl", "Dancing figurine", 5.99, Category.Chachkie,true),
-                new Product("Churro", "Fried dough pastry", 0.99, Category.Food,false),
-                new Product("Milk", "Moo juice", 2.99, Category.Drink,false),
-            };
-            return products;
+            return ReadProducts();
         }
 
-        private static void SaveProducts(List<Product> products)
+        public static void SaveProducts(List<Product> products)
         {
             StreamWriter writer = new StreamWriter("Product.txt");
             foreach (Product p in products)
@@ -58,7 +50,7 @@ namespace POSTerminalGui
             while (line != null)
             {
                 string[] productProps = line.Split('|');
-                productList2.Add(new Product(productProps[0], productProps[1], double.Parse(productProps[2]), (Category)int.Parse(productProps[3]), bool.Parse(productProps[4]));
+                productList2.Add(new Product(productProps[0], productProps[1], double.Parse(productProps[2]), (Category)Enum.Parse(typeof(Category),productProps[3]), bool.Parse(productProps[4])));
                 line = reader.ReadLine();
             }
             reader.Close();
