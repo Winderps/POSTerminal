@@ -9,10 +9,29 @@ namespace POSTerminalGui
     class Order
     {
         private const double SalesTax = .06;
+        private List<PaymentMethod> _paymentMethods;
 
         public Dictionary<Product, int> Contents { get; set; }
-        public List<PaymentMethod> PaymentMethods { get; set; }
         public double AmountPaid { get; set; }
+
+        /// <summary>
+        /// The list of payment methods received.
+        /// </summary>
+        public List<PaymentMethod> PaymentMethods
+        {
+            get
+            {
+                return _paymentMethods;
+            }
+            set
+            {
+                _paymentMethods = value;
+                AmountPaid = 0.0;
+                _paymentMethods.ForEach(
+                    payment => AmountPaid += payment.amountPaid
+                    );
+            }
+        }
 
         /// <summary>
         /// True if order has a nonzero total and payment is greater than grand total
@@ -47,7 +66,7 @@ namespace POSTerminalGui
             {
                 return Contents.Sum(item =>
                     (item.Key.Price * item.Value) //individual item price * quantity
-                    * 1.0 + SalesTax); // * 1.0 + (item.Key.Taxable ? SalesTax : 0.0)
+                    * (1.0 + (item.Key.Taxable ? SalesTax : 0.0)));
             }
         }
 
@@ -60,7 +79,7 @@ namespace POSTerminalGui
             {
                 return Contents.Sum(item =>
                     (item.Key.Price * item.Value)
-                    * SalesTax);
+                    * (item.Key.Taxable ? SalesTax : 0.0));
             }
         }
 
@@ -89,7 +108,7 @@ namespace POSTerminalGui
         public Order()
         {
             Contents = new Dictionary<Product, int>();
-            PaymentMethods = new List<PaymentMethod>();
+            _paymentMethods = new List<PaymentMethod>();
             AmountPaid = 0.0;
         }
 
@@ -109,12 +128,19 @@ namespace POSTerminalGui
 
         public static double GetLineTotal(KeyValuePair<Product, int> orderItem)
         {
+            if (!orderItem.Key.Taxable)
+            {
+                return (orderItem.Key.Price * orderItem.Value);
+            }
             return (orderItem.Key.Price * orderItem.Value) * (1.0 + SalesTax);
         }
 
         public static double GetTaxAmount(KeyValuePair<Product, int> orderItem)
         {
-            //if (!orderItem.Key.Taxable) return 0.0;
+            if (!orderItem.Key.Taxable)
+            {
+                return 0.0;
+            }
             return (orderItem.Key.Price * orderItem.Value) * SalesTax;
         }
     }
