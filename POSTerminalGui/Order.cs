@@ -28,7 +28,7 @@ namespace POSTerminalGui
                 _paymentMethods = value;
                 AmountPaid = 0.0m;
                 _paymentMethods.ForEach(
-                    payment => AmountPaid += payment.amountPaid
+                    payment => AmountPaid += Math.Floor(payment.amountPaid)
                     );
             }
         }
