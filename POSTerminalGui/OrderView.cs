@@ -46,7 +46,31 @@ namespace POSTerminalGui
             }
             else
             {
-                Console.WriteLine($"Change Due:{Transaction.ChangeDue,79:C2}");
+                foreach (PaymentMethod payment in Transaction.PaymentMethods)
+                {
+                    Console.WriteLine("Payment Methods Used: ");
+                    if (payment is CheckPaymentMethod)
+                    {
+                        CheckPaymentMethod check = payment as CheckPaymentMethod;
+                        string number = check.CheckNumber.ToString();
+                        Console.WriteLine($"Check: {number.Substring(number.Length-4)}\nAmount: {check.amountPaid:C2}");
+                        Console.WriteLine(new String('=', 90));
+                    }
+                    else if (payment is CashPaymentMethod)
+                    {
+                        CashPaymentMethod cash = payment as CashPaymentMethod;
+                        Console.WriteLine($"Cash: {cash.amountPaid:C2}");
+                        Console.WriteLine(new String('=', 90));
+                    }
+                    else if (payment is CreditPaymentMethod)
+                    {
+                        CreditPaymentMethod card = payment as CreditPaymentMethod;
+                        string number = card.CreditCardNumber.ToString();
+                        Console.WriteLine($"Card:{number.Substring(number.Length - 4)}\nAmount: {card.amountPaid:C2}");
+                        Console.WriteLine(new String('=', 90));
+                    }
+                    Console.WriteLine($"Change Due:{Transaction.ChangeDue,79:C2}");
+                }
             }
         }
 
