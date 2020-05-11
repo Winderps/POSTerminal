@@ -21,8 +21,8 @@ namespace POSTerminalGui
             foreach (KeyValuePair<Product, int> item in Transaction.Contents)
             {
                 Product p = item.Key;
-                double lineSubtotal = Order.GetLineSubtotal(item);
-                double tax = Order.GetTaxAmount(item);
+                decimal lineSubtotal = Order.GetLineSubtotal(item);
+                decimal tax = Order.GetTaxAmount(item);
                 Console.WriteLine(
                     $"{p.Name,-20}" +
                     $"{p.ProductCategory,15}" +
@@ -83,10 +83,10 @@ namespace POSTerminalGui
             o.AddProduct(p[0], 3);
             o.AddProduct(p[1], 1);
             o.AddProduct(p[4], 5);
-            o.AmountPaid = 10.52;
+            o.AmountPaid = 10.52m;
             view.Display();
 
-            o.AmountPaid = 25.00;
+            o.AmountPaid = 25.00m;
             view.Display();
         }
     }

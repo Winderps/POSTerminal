@@ -8,11 +8,11 @@ namespace POSTerminalGui
 {
     class Order
     {
-        private const double SalesTax = .06;
+        private const decimal SalesTax = .06m;
         private List<PaymentMethod> _paymentMethods;
 
         public Dictionary<Product, int> Contents { get; set; }
-        public double AmountPaid { get; set; }
+        public decimal AmountPaid { get; set; }
 
         /// <summary>
         /// The list of payment methods received.
@@ -26,7 +26,7 @@ namespace POSTerminalGui
             set
             {
                 _paymentMethods = value;
-                AmountPaid = 0.0;
+                AmountPaid = 0.0m;
                 _paymentMethods.ForEach(
                     payment => AmountPaid += payment.amountPaid
                     );
@@ -48,7 +48,7 @@ namespace POSTerminalGui
         /// <summary>
         /// Total cost of the order before tax
         /// </summary>
-        public double Subtotal
+        public decimal Subtotal
         {
             get
             {
@@ -60,48 +60,48 @@ namespace POSTerminalGui
         /// <summary>
         /// Total cost with tax included
         /// </summary>
-        public double GrandTotal
+        public decimal GrandTotal
         {
             get
             {
                 return Contents.Sum(item =>
                     (item.Key.Price * item.Value) //individual item price * quantity
-                    * (1.0 + (item.Key.Taxable ? SalesTax : 0.0)));
+                    * (1.0m + (item.Key.Taxable ? SalesTax : 0.0m)));
             }
         }
 
         /// <summary>
         /// Total of sales tax only
         /// </summary>
-        public double TaxTotal
+        public decimal TaxTotal
         {
             get
             {
                 return Contents.Sum(item =>
                     (item.Key.Price * item.Value)
-                    * (item.Key.Taxable ? SalesTax : 0.0));
+                    * (item.Key.Taxable ? SalesTax : 0.0m));
             }
         }
 
         /// <summary>
         /// The amount left to be paid, zero if fully paid
         /// </summary>
-        public double AmountOwed
+        public decimal AmountOwed
         {
             get
             {
-                return Math.Max(GrandTotal - AmountPaid, 0.0d);
+                return Math.Max(GrandTotal - AmountPaid, 0.0m);
             }
         }
 
         /// <summary>
         /// Amount of change due or zero if order is incomplete
         /// </summary>
-        public double ChangeDue
+        public decimal ChangeDue
         {
             get
             {
-                return Math.Max(AmountPaid - GrandTotal, 0.0d);
+                return Math.Max(AmountPaid - GrandTotal, 0.0m);
             }
         }
 
@@ -109,7 +109,7 @@ namespace POSTerminalGui
         {
             Contents = new Dictionary<Product, int>();
             _paymentMethods = new List<PaymentMethod>();
-            AmountPaid = 0.0;
+            AmountPaid = 0.0m;
         }
 
         public void AddProduct(Product product, int quantity)
@@ -121,25 +121,25 @@ namespace POSTerminalGui
             Contents.Add(product, quantity);
         }
 
-        public static double GetLineSubtotal(KeyValuePair<Product, int> orderItem)
+        public static decimal GetLineSubtotal(KeyValuePair<Product, int> orderItem)
         {
             return (orderItem.Key.Price * orderItem.Value);
         }
 
-        public static double GetLineTotal(KeyValuePair<Product, int> orderItem)
+        public static decimal GetLineTotal(KeyValuePair<Product, int> orderItem)
         {
             if (!orderItem.Key.Taxable)
             {
                 return (orderItem.Key.Price * orderItem.Value);
             }
-            return (orderItem.Key.Price * orderItem.Value) * (1.0 + SalesTax);
+            return (orderItem.Key.Price * orderItem.Value) * (1.0m + SalesTax);
         }
 
-        public static double GetTaxAmount(KeyValuePair<Product, int> orderItem)
+        public static decimal GetTaxAmount(KeyValuePair<Product, int> orderItem)
         {
             if (!orderItem.Key.Taxable)
             {
-                return 0.0;
+                return 0.0m;
             }
             return (orderItem.Key.Price * orderItem.Value) * SalesTax;
         }

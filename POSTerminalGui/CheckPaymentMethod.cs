@@ -12,7 +12,7 @@ namespace POSTerminalGui
             return "Check " + CheckNumber + ", amount Paid $" + amountPaid;
         }
 
-        public override void TakePayment(double amountDue, out double amountStillDue)
+        public override void TakePayment(decimal amountDue, out decimal amountStillDue)
         {
             //For check, get the check number.
 
@@ -27,8 +27,8 @@ namespace POSTerminalGui
             CheckNumber = checkNum;
 
             Console.WriteLine("Please entered the amount tendered: ");
-            double amountTendered = 0;
-            while (!double.TryParse(Console.ReadLine(), out amountTendered) ||
+            decimal amountTendered = 0;
+            while (!decimal.TryParse(Console.ReadLine(), out amountTendered) ||
                  amountTendered <= 0)
             {
                 Console.WriteLine("I'm sorry I didn't understand.  Please try again.");

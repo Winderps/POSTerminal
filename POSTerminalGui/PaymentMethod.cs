@@ -6,21 +6,21 @@ namespace POSTerminalGui
 {
     abstract class PaymentMethod
     {
-        public double amountPaid = 0;
+        public decimal amountPaid = 0;
         public bool paymentAccepted;
 
-        public abstract void TakePayment(double amountDue, out double amountStillDue);
-        public static List<PaymentMethod> RequestPayment(double amountDue)
+        public abstract void TakePayment(decimal amountDue, out decimal amountStillDue);
+        public static List<PaymentMethod> RequestPayment(decimal amountDue)
         {
             List<PaymentMethod> payments = new List<PaymentMethod>();
 
             if (amountDue <= 0) return payments;
 
-            double amountStillDue = amountDue;
+            decimal amountStillDue = amountDue;
 
             while (amountStillDue > 0)
             {
-                Console.WriteLine("\nAmount Due is $" + amountStillDue);
+//                Console.WriteLine("\nAmount Due is $" + amountStillDue);
                 Console.WriteLine("Please select your payment type:");
                 Console.WriteLine("1) Cash");
                 Console.WriteLine("2) Check");

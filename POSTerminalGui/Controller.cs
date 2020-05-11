@@ -25,7 +25,7 @@ namespace POSTerminalGui
 
                 int itemNumber = 0;
                 while (!int.TryParse(Console.ReadLine(), out itemNumber) ||
-                    itemNumber <= 1 ||
+                    itemNumber < 1 ||
                     itemNumber > allProducts.Count)
                 {
                     Console.WriteLine("I'm sorry I didn't understand.  Please enter one of the item numbers.");
