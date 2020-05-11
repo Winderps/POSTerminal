@@ -147,7 +147,7 @@ namespace POSTerminalGui
 
         public override string ToString()
         {
-            return $"Subtotal: {Subtotal:C2}\nTax: {TaxTotal:C2}\n Grand Total: {GrandTotal:C2}";
+            return $"Subtotal: {Subtotal:C2}\nTax: {TaxTotal:C2}\nGrand Total: {GrandTotal:C2}";
         }
     }
 }
