@@ -14,28 +14,31 @@ namespace POSTerminalGui
             OrderView myOrderView = new OrderView(myOrder);
 
             List <Product> allProducts = Product.GetProducts();// Nate loads the text file
-
-            // Nate to create a view for this loop
-            // Nate to load the products from a file
-            // Chris to fix date validation
-            // Mike to fix 
-            // everyone committed to individual branches
-            // we commit to 
-            // 10am 
-            for (int i=0; i < allProducts.Count; i++)
-            {
-                Console.WriteLine(i+1 + ") " + allProducts[i].Name + "\t Price: " + allProducts[i].Price.ToString("C2"));
-            }
+            ProductView productView = new ProductView();
+            productView.Display();
 
             string cont = "y";
 
             do
             {
                 Console.WriteLine("Enter the item number you wish to add: ");
-                int itemNumber = int.Parse(Console.ReadLine());
+
+                int itemNumber = 0;
+                while (!int.TryParse(Console.ReadLine(), out itemNumber) ||
+                    itemNumber <= 1 ||
+                    itemNumber > allProducts.Count)
+                {
+                    Console.WriteLine("I'm sorry I didn't understand.  Please enter one of the item numbers.");
+                }
 
                 Console.WriteLine("Enter the quantity you wish to add: ");
-                int itemQuantity = int.Parse(Console.ReadLine());
+
+                int itemQuantity = 0;
+                while (!int.TryParse(Console.ReadLine(), out itemQuantity) ||
+                    itemQuantity < 1 )
+                {
+                    Console.WriteLine("I'm sorry I didn't understand.  Please enter a whole number 1 or greater.");
+                }
 
                 myOrder.AddProduct(allProducts[itemNumber-1], itemQuantity);
 
