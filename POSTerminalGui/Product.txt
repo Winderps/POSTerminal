@@ -1,0 +1,5 @@
+Hotdog|Meat log on a bun|1.5|Food|False
+Big Gulp|XL Frozen Goodness|1.99|Drink|False
+Hula Girl|Dancing figurine|5.99|Chachkie|True
+Churro|Fried dough pastry|0.99|Food|False
+Milk|Moo juice|2.99|Drink|False
