@@ -53,7 +53,7 @@ namespace POSTerminalGui
                     {
                         CheckPaymentMethod check = payment as CheckPaymentMethod;
                         string number = check.CheckNumber.ToString();
-                        Console.WriteLine($"Check: {number.Substring(number.Length-4)}\nAmount: {check.amountPaid:C2}");
+                        Console.WriteLine($"Check: {number}\nAmount: {check.amountPaid:C2}");
                         Console.WriteLine(new String('=', 90));
                     }
                     else if (payment is CashPaymentMethod)
