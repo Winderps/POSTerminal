@@ -28,7 +28,7 @@ namespace POSTerminalGui
                 _paymentMethods = value;
                 AmountPaid = 0.0m;
                 _paymentMethods.ForEach(
-                    payment => AmountPaid += Math.Floor(payment.amountPaid)
+                    payment => AmountPaid += payment.amountPaid
                     );
             }
         }
@@ -52,8 +52,9 @@ namespace POSTerminalGui
         {
             get
             {
-                return Contents.Sum(item =>
-                    (item.Key.Price * item.Value));
+                return Math.Round(
+                    Contents.Sum(item =>
+                    (item.Key.Price * item.Value)), 2);
             }
         }
 
@@ -64,9 +65,9 @@ namespace POSTerminalGui
         {
             get
             {
-                return Contents.Sum(item =>
+                return Math.Round(Contents.Sum(item =>
                     (item.Key.Price * item.Value) //individual item price * quantity
-                    * (1.0m + (item.Key.Taxable ? SalesTax : 0.0m)));
+                    * (1.0m + (item.Key.Taxable ? SalesTax : 0.0m))), 2);
             }
         }
 
@@ -77,9 +78,9 @@ namespace POSTerminalGui
         {
             get
             {
-                return Contents.Sum(item =>
+                return Math.Round(Contents.Sum(item =>
                     (item.Key.Price * item.Value)
-                    * (item.Key.Taxable ? SalesTax : 0.0m));
+                    * (item.Key.Taxable ? SalesTax : 0.0m)),2);
             }
         }
 
