@@ -13,8 +13,15 @@ namespace POSTerminalGui
             Order myOrder = new Order();
             OrderView myOrderView = new OrderView(myOrder);
 
-            List <Product> allProducts = Product.GetProducts();
+            List <Product> allProducts = Product.GetProducts();// Nate loads the text file
 
+            // Nate to create a view for this loop
+            // Nate to load the products from a file
+            // Chris to fix date validation
+            // Mike to fix 
+            // everyone committed to individual branches
+            // we commit to 
+            // 10am 
             for (int i=0; i < allProducts.Count; i++)
             {
                 Console.WriteLine(i+1 + ") " + allProducts[i].Name + "\t Price: " + allProducts[i].Price.ToString("C2"));

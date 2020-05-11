@@ -30,9 +30,20 @@ namespace POSTerminalGui
 
             Console.WriteLine("Please entered the credit card expiration date (MM/DD/YYYY): ");
             DateTime ccExpDate;
+            DateTime today = DateTime.Now;
+            
+            // Console.WriteLine("today: " + today);
+
             while (!DateTime.TryParse(Console.ReadLine(), out ccExpDate) ||
-                 ccExpDate == null)
+                 ccExpDate == null || ccExpDate <= today
+                 )
             {
+                if (ccExpDate <= today)
+                {
+                    Console.WriteLine("Credit card is expired.  Please provide another payment method.");
+                    amountStillDue = amountDue;
+                    return;
+                }
                 Console.WriteLine("I'm sorry I didn't understand.  Please try again.");
             }
 
