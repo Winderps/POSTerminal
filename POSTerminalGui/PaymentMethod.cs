@@ -14,13 +14,13 @@ namespace POSTerminalGui
         {
             List<PaymentMethod> payments = new List<PaymentMethod>();
 
-            if (amountDue <= 0) return payments;
+            if (amountDue <= 0m) return payments;
 
             decimal amountStillDue = amountDue;
 
-            while (amountStillDue > 0)
+            while (amountStillDue > 0m)
             {
-//                Console.WriteLine("\nAmount Due is $" + amountStillDue);
+                Console.WriteLine("\nAmount Due is " + amountStillDue.ToString("C2"));
                 Console.WriteLine("Please select your payment type:");
                 Console.WriteLine("1) Cash");
                 Console.WriteLine("2) Check");

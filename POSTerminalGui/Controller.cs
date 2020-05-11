@@ -42,11 +42,18 @@ namespace POSTerminalGui
 
                 myOrder.AddProduct(allProducts[itemNumber-1], itemQuantity);
 
-                Console.WriteLine("Would you like to add more items?");
+                Console.WriteLine("Would you like to add more items? (y/n)");
                 cont = Console.ReadLine();
+                
+                while (!cont.Equals("y") && !cont.Equals("n"))
+                {
+                    Console.WriteLine("I'm sorry I didn't understand.  Please enter 'y' for yes or 'n' for no.");
+                    cont = Console.ReadLine();
+                }
+
             } while (cont.Equals("y"));
 
-            Console.WriteLine("Here is your order:");
+            Console.WriteLine("\nHere is your order:");
 
             myOrderView.Display();
 
