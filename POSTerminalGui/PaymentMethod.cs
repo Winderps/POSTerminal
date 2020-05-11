@@ -18,9 +18,10 @@ namespace POSTerminalGui
 
             decimal amountStillDue = amountDue;
 
-            while (amountStillDue > 0m)
+            while (amountStillDue > 0)
             {
                 Console.WriteLine("\nAmount Due is " + amountStillDue.ToString("C2"));
+                //Console.WriteLine("\nAmount Due is " + amountStillDue);
                 Console.WriteLine("Please select your payment type:");
                 Console.WriteLine("1) Cash");
                 Console.WriteLine("2) Check");
