@@ -17,7 +17,7 @@ namespace POSTerminalGui
             int i = 1;
             foreach (Product item in ProductsList)
             {
-                Console.WriteLine($"{i}){item.Name,-20}{item.Description,25}{item.Price,15}{item.ProductCategory,15}");
+                Console.WriteLine($"{i}){item.Name,-20}{item.Description,25}{item.Price,15:c2}{item.ProductCategory,15}");
                 i++;
             }
         }

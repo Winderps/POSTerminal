@@ -3,3 +3,10 @@ Big Gulp|XL Frozen Goodness|1.99|Drink|False
 Hula Girl|Dancing figurine|5.99|Chachkie|True
 Churro|Fried dough pastry|0.99|Food|False
 Milk|Moo juice|2.99|Drink|False
+Flipflops|Soles for your feet|10.99|Chachkie|True
+Flashlight|Artifical Sunlight|7.69|Chachkie|True
+Yardstick|Thirty six inches|2.85|Chachkie|True
+Cheese|Old milk|7.12|Food|False
+Fuzzy Dice|Bling for your car|10.56|Chachkie|True
+Bottled Water|H2O in a bottle|2.00|Drink|False
+Pens|Ink in a Stick|0.99|Chachkie|True
