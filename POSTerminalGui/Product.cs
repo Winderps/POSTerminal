@@ -34,7 +34,7 @@ namespace POSTerminalGui
 
         public static void SaveProducts(List<Product> products)
         {
-            StreamWriter writer = new StreamWriter("Product.txt");
+            StreamWriter writer = new StreamWriter("../../../Product.txt");
             foreach (Product p in products)
             {
                 writer.WriteLine($"{p.Name}|{p.Description}|{p.Price}|{p.ProductCategory}|{p.Taxable}");
@@ -45,7 +45,7 @@ namespace POSTerminalGui
         {
             List<Product> productList2 = new List<Product>();
 
-            StreamReader reader = new StreamReader("Product.txt");
+            StreamReader reader = new StreamReader("../../../Product.txt");
             string line = reader.ReadLine();
             while (line != null)
             {
