@@ -9,7 +9,7 @@ namespace POSTerminalGui
 
         public void Display()
         {
-            Console.WriteLine($"{"Item Name",-20}{"Description",27}{"Price",15}{"Category",15}");
+            Console.WriteLine($"{"Item Name",-20}{"Description",25}{"Price",15}{"Category",15}");
             Console.WriteLine(new String('=', 90));
 
             List<Product> ProductsList = Product.ReadProducts();
