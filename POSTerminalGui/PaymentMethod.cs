@@ -20,19 +20,17 @@ namespace POSTerminalGui
 
             while (amountStillDue > 0)
             {
-                Console.WriteLine("\nAmount Due is " + amountStillDue.ToString("C2"));
-                //Console.WriteLine("\nAmount Due is " + amountStillDue);
-                Console.WriteLine("Please select your payment type:");
-                Console.WriteLine("1) Cash");
-                Console.WriteLine("2) Check");
-                Console.WriteLine("3) Credit Card");
+                Console.WriteLine("\nAmount Due is " + amountStillDue.ToString("C2") +".  ");
+                Console.WriteLine("Here are your payment options");
+                Console.WriteLine("1) Cash  2) Check  3) Credit Card");
+                Console.Write("Please select your payment type: ");
 
                 int paymentType = 0;
                 while (!int.TryParse(Console.ReadLine(), out paymentType) ||
                      paymentType <= 0 ||
                      paymentType > 3)
                 {
-                    Console.WriteLine("I'm sorry I didn't understand.  Please try again.");
+                    Console.Write("I'm sorry I didn't understand.  Please enter 1-3 for one of the payment options: ");
                 }
 
                 PaymentMethod payment;
@@ -46,20 +44,12 @@ namespace POSTerminalGui
                 };
 
                 payment.TakePayment(amountStillDue, out amountStillDue);
-                if (!payment.paymentAccepted)
-                {
-                    Console.WriteLine("payment not applied");
-                } else
+                if (payment.paymentAccepted)
                 {
                     payments.Add(payment);
                 }
             }// end while
 
-            //Console.WriteLine("Thank you for your payment.  Have a nice day!");
-            //foreach (PaymentMethod p in payments)
-            //{
-            //    Console.WriteLine("Payment: " + p.ToString() );
-            //}
             return payments;
 
         }

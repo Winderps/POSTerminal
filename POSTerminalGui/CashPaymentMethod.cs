@@ -18,18 +18,17 @@ namespace POSTerminalGui
            //For check, get the check number.
            //For credit, get the credit card number, expiration, and CW.
 
-           Console.WriteLine("Please entered the amount tendered: ");
+           Console.Write("Please entered the amount tendered. $");
            decimal amountTendered = 0;
            while (!decimal.TryParse(Console.ReadLine(), out amountTendered) ||
                 amountTendered <= 0)
             {
-                Console.WriteLine("I'm sorry I didn't understand.  Please try again.");
+                Console.Write("I'm sorry I didn't understand.  Please enter an amount greater than zero. $");
             }
 
            if (amountTendered >= amountDue)
             {
                 decimal change = amountTendered - amountDue;
-                //amountPaid = amountDue;
                 amountPaid = amountTendered;
                 //Console.WriteLine("Here is your change: $" + change);
                 amountStillDue = 0;
@@ -38,7 +37,6 @@ namespace POSTerminalGui
             {
                 amountPaid = amountTendered;
                 amountStillDue = amountDue - amountTendered;
-                // Console.WriteLine("Amount still due:" + amountStillDue);
                 paymentAccepted = true;
             }
         }

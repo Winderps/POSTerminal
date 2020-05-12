@@ -16,29 +16,29 @@ namespace POSTerminalGui
         {
             //For check, get the check number.
 
-            Console.WriteLine("Please entered the check number: ");
+            Console.Write("Please entered the check number: ");
             int checkNum = 0;
             while (!int.TryParse(Console.ReadLine(), out checkNum) ||
                  checkNum <= 0)
             {
-                Console.WriteLine("I'm sorry I didn't understand.  Please try again.");
+                Console.Write("I'm sorry I didn't understand.  Please enter the check number: ");
             }
 
             CheckNumber = checkNum;
 
-            Console.WriteLine("Please entered the amount tendered: ");
+            Console.Write("Please entered the amount tendered: $");
             decimal amountTendered = 0;
             while (!decimal.TryParse(Console.ReadLine(), out amountTendered) ||
                  amountTendered <= 0)
             {
-                Console.WriteLine("I'm sorry I didn't understand.  Please try again.");
+                Console.Write("I'm sorry I didn't understand.  Please enter an amount greater than zero. $");
             }
 
             amountStillDue = amountDue - amountTendered;
 
             if (amountStillDue < 0)
             {
-                Console.WriteLine("Check cannot be for more than the amount due");
+                Console.WriteLine("PAYMENT CANCELLED: check cannot be for more than the amount due");
                 amountStillDue = amountDue;
                 paymentAccepted = false;
             }
@@ -49,7 +49,6 @@ namespace POSTerminalGui
             else // amountStillDue > 0
             {
                 amountPaid = amountTendered;
-                // Console.WriteLine("Amount still due:" + amountStillDue);
                 paymentAccepted = true;
             }
 
